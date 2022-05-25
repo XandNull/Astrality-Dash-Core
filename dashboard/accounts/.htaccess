@@ -1,0 +1,10 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /dashboard/accounts/
+
+RewriteCond %{THE_REQUEST} /index\.php\?userName=([^\s&]+) [NC]
+RewriteRule ^ %1? [R=301,L,NE]
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^([\w-]+)/?$ index.php?userName=$1 [L,QSA]
